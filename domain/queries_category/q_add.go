@@ -4,7 +4,7 @@ import (
 	//Importaciones de go (vienen incluidas al instalar)
 	"encoding/json"
 	"strconv"
-//	"fmt"
+	"fmt"
 
 	//importaciones externas (descargadas)
 	//"github.com/aws/aws-lambda-go/events"
@@ -19,6 +19,8 @@ import (
 
 func AddRouterQuery(body string, User string) (int, string) {
 	
+	fmt.Println("Entramos a AddRouterQuery")
+	fmt.Println(body)
 	var o entities.Orders
 	err := json.Unmarshal([]byte(body), &o)
 
@@ -27,6 +29,9 @@ func AddRouterQuery(body string, User string) (int, string) {
 	}
 
 	o.Order_UserUUID = User
+
+	fmt.Println("Entramos a imprimir o")
+	fmt.Println(o)
 
 	Ok, menssage := ValidOrder(o)
 
@@ -57,6 +62,10 @@ func ValidOrder (o entities.Orders) (bool, string){
 			return false, "Debe indicar la cantidad del producto en el detalle de la orden"
 		}
 		count++
+	}
+
+	if count == 0 {
+		return false, "Debe indicar Items en la orden"
 	}
 
 	return true, ""

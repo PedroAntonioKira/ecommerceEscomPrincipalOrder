@@ -55,7 +55,7 @@ func Manejadores(path string, method string, body string, headers map[string]str
 
     //Validamos y analizamos que nos viene en el path
     switch path[16:20] {
-	case "addr":
+	case "orde":
 		fmt.Println("Entramos a Address")
 		return ProcesoAddress(body, path, method, user, idn, request)
     default:
@@ -78,16 +78,16 @@ func ProcesoAddress(body string, path string, method string, user string, id int
 		//return use_cases.AddCategoryUC(body, user)
 	case "PUT":
 		fmt.Println("Si entramos A PUT de Address")
-		return use_cases.UpdateAddressUC(body, user, pathParams02)
+		//return use_cases.UpdateAddressUC(body, user, pathParams02)
 	case "DELETE":
 		fmt.Println("Si entramos A DELETE de Category")
-		return use_cases.DeleteAddressUC(body, user, pathParams02)
+		//return use_cases.DeleteAddressUC(body, user, pathParams02)
 		//return routers.DeleteCategory(body, user, id)
 	case "GET":
 		fmt.Println("Si entramos A GET de Category")
         if(request.Resource == "/ecommerceEscom/address"){
             fmt.Println("Se deben de traer el listado address")
-			return use_cases.ListAddressUC(body, user)
+			return use_cases.ListOrderUC(user, request)
         }else if(request.Resource == "/ecommerceEscom/address/{id}"){
 			id := request.PathParameters["id"]
             fmt.Println("Se debe de traer una categoria en especifico")

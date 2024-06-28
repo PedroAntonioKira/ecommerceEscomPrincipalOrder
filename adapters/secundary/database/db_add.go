@@ -33,8 +33,8 @@ func AddRouterDatabase(o entities.Orders)  (int64, error) {
 	defer secundary.Db.Close()
 
 	//Declaramos la sentencia SQL para insertar el Producto.
-	sentencia := "INSERT INTO orders (Order_UserUUID, Order_Total, Order_AddId, VALUES ('"
-	sentencia += o.Order_UserUUID + "', " + strconv.FormatFloat(o.Order_Total, 'f', -1, 64) + ", " + strconv.Itoa(o.Order_AddId)
+	sentencia := "INSERT INTO orders (Order_UserUUID, Order_Total, Order_AddId) VALUES ('"
+	sentencia += o.Order_UserUUID + "', " + strconv.FormatFloat(o.Order_Total, 'f', -1, 64) + ", " + strconv.Itoa(o.Order_AddId) + " )"
 
 	var result sql.Result
 
@@ -57,8 +57,8 @@ func AddRouterDatabase(o entities.Orders)  (int64, error) {
 	}
 
 	for _, od := range o.OrdersDetails {
-		sentencia = "INSERT INTO orders_details (OD_OrderId, OD_ProdId, Od_Quantity, OD_Price) VALUES (" + strconv.Itoa(int(LastInsertId))
-		sentencia += ", " + strconv.Itoa(od.OD_ProdId) + ", " + strconv.Itoa(od.OD_Quantity) + "," + strconv.FormatFloat(od.OD_Price, 'f', -1, 64) + " )"
+		sentencia = "INSERT INTO orders_detail (OD_OrderId, OD_ProdId, Od_Quantity, OD_Price) VALUES (" + strconv.Itoa(int(LastInsertId))
+		sentencia += ", " + strconv.Itoa(od.OD_ProdId) + ", " + strconv.Itoa(od.OD_Quantity) + ", " + strconv.FormatFloat(od.OD_Price, 'f', -1, 64) + " )"
 		fmt.Println(sentencia)
 
 		//Ejecutamos la sentencia SQL
