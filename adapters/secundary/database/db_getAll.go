@@ -102,6 +102,7 @@ func ListOrderDatabase(User string, fechaDesde string, fechaHasta string, page i
 
 		fmt.Println("Terminamos de leer los datos")
 		if err != nil {
+			fmt.Println("Aqui peude estar el error 001")
 			fmt.Println(err.Error())
 			return Orders, err
 		}
@@ -128,9 +129,10 @@ func ListOrderDatabase(User string, fechaDesde string, fechaHasta string, page i
 			var OD_Quantity int64
 			var OD_Price float64
 
-			err := rows.Scan(&OD_Id, &OD_ProdId, &OD_Quantity, &OD_Price)
+			err := rowsD.Scan(&OD_Id, &OD_ProdId, &OD_Quantity, &OD_Price)
 
 			if err != nil {
+				fmt.Println("Aqui peude estar el error 002")
 				fmt.Println(err.Error())
 				return Orders, err
 			}

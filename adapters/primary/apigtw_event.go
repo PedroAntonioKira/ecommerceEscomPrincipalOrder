@@ -85,10 +85,10 @@ func ProcesoAddress(body string, path string, method string, user string, id int
 		//return routers.DeleteCategory(body, user, id)
 	case "GET":
 		fmt.Println("Si entramos A GET de Category")
-        if(request.Resource == "/ecommerceEscom/address"){
+        if(request.Resource == "/ecommerceEscom/order"){
             fmt.Println("Se deben de traer el listado address")
 			return use_cases.ListOrderUC(user, request)
-        }else if(request.Resource == "/ecommerceEscom/address/{id}"){
+        }else if(request.Resource == "/ecommerceEscom/order/{id}"){
 			id := request.PathParameters["id"]
             fmt.Println("Se debe de traer una categoria en especifico")
 			fmt.Println(id)
